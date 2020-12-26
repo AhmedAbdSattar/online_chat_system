@@ -22,7 +22,7 @@
 			//Call function encrypt.
 		$fusername= encrypt($username,$secret);	
 		$password = check_input($_POST["password"]);
-		$fpassword=md5($password);
+		$fpassword=encrypt(md5($password),$secret);
 		
 		$query=mysqli_query($conn,"select * from `user` where username='$fusername' and password='$fpassword'");
 		

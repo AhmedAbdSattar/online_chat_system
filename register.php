@@ -22,7 +22,7 @@
 			
 		$fusername=$username;
 		$password = check_input($_POST["password"]);
-		$fpassword=md5($password); 
+		$fpassword=encrypt(md5($password),$secret); 
 		$fname = check_input($_POST["name"]);
 			                                                                                                    	//encryption function	
 		mysqli_query($conn,"insert into `user` (uname, username, password, access) values ('".encrypt($fname, $secret)."', '".encrypt($fusername, $secret)."', '$fpassword', '2')");

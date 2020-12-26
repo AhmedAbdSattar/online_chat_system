@@ -3,8 +3,8 @@
 	$secret ='fcai-helwanuniversity';
 	include('DES.php');
 	$mname=encrypt($_POST['mname'],$secret);
-	$cpassword=md5($_POST['cpassword']);
-	$apassword=md5($_POST['apassword']);
+	$cpassword=encrypt(md5($_POST['cpassword']),$secret);
+	$apassword=encrypt(md5($_POST['apassword']),$secret);
 	$mpassword=$_POST['mpassword'];
 	$musername=encrypt($_POST['musername'],$secret);
 	
@@ -34,7 +34,7 @@
 			$newpassword=$mpassword;
 		}
 		else{
-			$newpassword=md5($mpassword);
+			$newpassword=encrypt(md5($mpassword),$secret);
 		}
 		
 		mysqli_query($conn,"update `user` set username='$musername', password='$newpassword', uname='$mname' where userid='".$_SESSION['id']."'");

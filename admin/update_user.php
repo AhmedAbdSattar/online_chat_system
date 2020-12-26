@@ -8,12 +8,11 @@
 		
 		$uq=mysqli_query($conn,"select * from `user` where userid='$id'");
 		$uqrow=mysqli_fetch_array($uq);
-		// problem :(
 		if ($password==$uqrow['password']){
 			$newpassword=$password;
 		}
 		else{
-			$newpassword=md5($password);
+			$newpassword=encrypt(md5($password),$secret);
 		}
 		mysqli_query($conn,"update `user` set uname='$name', username='$username', password='$newpassword' where userid='$id'");
 	}
